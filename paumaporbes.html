@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pau m'aproves?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            user-select: none; /* Evita la selección de texto */
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pau m'aprobes?</h1>
+
+    <button id="yesBtn" class="button">Sí</button>
+    <button id="noBtn" class="button">No</button>
+
+    <div id="message">¡Gracias! 😊</div>
+
+    <script>
+        // Función para mover el botón "No"
+        const noBtn = document.getElementById('noBtn');
+        noBtn.addEventListener('mouseover', () => {
+            const randomX = Math.random() * window.innerWidth - noBtn.offsetWidth;
+            const randomY = Math.random() * window.innerHeight - noBtn.offsetHeight;
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        });
+
+        // Función para mostrar el mensaje al hacer clic en "Sí"
+        const yesBtn = document.getElementById('yesBtn');
+        const message = document.getElementById('message');
+        yesBtn.addEventListener('click', () => {
+            message.style.display = 'block';
+        });
+
+        // Deshabilitar botón derecho del ratón
+        document.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+        });
+
+        // Deshabilitar ciertas teclas (F12, Ctrl+Shift+I, Ctrl+Shift+C)
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'F12' || 
+                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'C'))) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+</html>
